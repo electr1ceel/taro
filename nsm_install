@@ -2628,6 +2628,9 @@ sudo systemctl disable reboot_run_update.service
 sudo systemctl enable reboot_run_update.timer
 sudo systemctl start reboot_run_update.timer
 
+sudo systemctl enable fail2ban.service
+sudo systemctl start fail2ban.service
+
 # clean up
 sudo rm /root/nsm_install
 sudo rm /root/ids_to_ips
