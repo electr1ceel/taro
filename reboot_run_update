@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo nsm_cleanlogs
+sleep 10
+sudo /etc/croissants/conf.d/auto_update
+sleep 300
+sudo nsm_rules_update
+sleep 300
+sudo auto_update_ubuntu
