@@ -2640,6 +2640,7 @@ sudo rm -R /root/taro
 sudo rm /root/*.config
 sudo rm /root/*.service
 sudo rm /root/*.timer
+sudo rm /root/reboot_run_update
 
 # the end
 echo " "
