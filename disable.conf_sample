@@ -128,3 +128,7 @@ re:ET\sTROJAN\sPossible\sWannaCry\sDNS\sLookup
 1:2230010
 # SURICATA Applayer Detect protocol only one direction
 1:2260002
+# COVID-19
+1:2029708
+1:2029712
+1:2029706
