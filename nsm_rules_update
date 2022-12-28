@@ -1,10 +1,7 @@
 #!/bin/bash
 # Author   : Samiux (https://samiux.github.io)
-# Date     : DEC 10, 2022
+# Date     : OCT 09, 2022
 # License  : GPLv3 (Open Source)
-
-# load nsm.conf
-. /etc/croissants/conf.d/nsm.conf
 
 # for self-sign cert rule
 cd /tmp
@@ -31,7 +28,7 @@ wget https://www.dan.me.uk/torlist/?exit -O TorBulkExitList
 if [ -s /tmp/TorBulkExitList ]
 then
 	grep -Eo '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' /tmp/TorBulkExitList > /tmp/ip.txt
-	cat /tmp/ip.txt | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/tor.torexitnode
+	cat /tmp/ip.txt | sort -u | sed -e 's/$/,2,10/' > /var/lib/suricata/rules/iprep/tor.torexitnode
 fi
 
 #
@@ -114,23 +111,6 @@ sudo rm /tmp/*.url
 sudo rm /tmp/TorBulkExitList
 sudo rm /tmp/ip.txt
 cd ~
-
-# replace DROP to Alert when NSM_MODE="ids" else reset
-if [[ $NSM_MODE == "ids" ]]
-then
-	sed -i 's/drop/alert/g' /var/lib/suricata/rules/idps.rules
-	sed -i 's/drop/alert/g' /var/lib/suricata/rules/scanners.rules
-	sed -i 's/drop/alert/g' /var/lib/suricata/rules/malicious.rules
-	if [ -f /etc/suricata/drop.conf ]
-	then
-		sudo rm /etc/suricata/drop.conf
-	fi
-else
-	sed -i 's/alert/drop/g' /var/lib/suricata/rules/idps.rules
-	sed -i 's/alert/drop/g' /var/lib/suricata/rules/scanners.rules
-	sed -i 's/alert/drop/g' /var/lib/suricata/rules/malicious.rules
-	sudo cp /etc/suricata/drop.conf_sample /etc/suricata/drop.conf
-fi
 
 # loading rules
 sudo suricata-update
