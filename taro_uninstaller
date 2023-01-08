@@ -39,5 +39,6 @@ sudo rm /lib/systemd/system/reboot_run_update.timer
 sudo rm -R /etc/suricata
 sudo apt remove --purge suricata
 sudo apt remove --purge fail2ban
+sudo rm /etc/apt/sources.list.d/oisf-ubuntu-suricata-stable*.list
 
 # EOF
