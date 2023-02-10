@@ -2170,6 +2170,7 @@ sudo systemctl daemon-reload
 sudo chmod +x /etc/croissants/conf.d/setfirewall
 sudo systemctl restart suricata
 sudo chmod +r /var/log/suricata/eve.json
+sudo sync; sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 echo
 echo "Auto configure done!"
 
