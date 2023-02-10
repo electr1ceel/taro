@@ -1395,7 +1395,8 @@ reputation-files:
  - blocklist.de.blacklist
  - tor.torexitnode
  - reputation.blacklist
-
+ - bruteforcers.blacklist
+ 
 # When run with the option --engine-analysis, the engine will read each of
 # the parameters below, and print reports for each of the enabled sections
 # and exit.  The reports are printed to a file in the default log dir

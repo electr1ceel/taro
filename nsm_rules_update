@@ -105,6 +105,18 @@ fi
 #  sudo cp /tmp/malware_sha256 /var/lib/suricata/rules/
 #fi
 
+##############
+# bsdly.net bruteforcers list
+##############
+
+cd /tmp
+wget https://home.nuug.no/~peter/bruteforcers.txt
+
+if [ -s /tmp/bruteforcers.txt ]
+then
+	sed '/^#/d' /tmp/bruteforcers.txt | cut -c 4- | sed -e '/^$/d' | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/bruteforcers.blacklist
+fi
+
 # cleaning up
 sudo rm -R stamus-luajit-scripts
 sudo rm /tmp/*.list
@@ -113,6 +125,7 @@ sudo rm /tmp/*.rules*
 sudo rm /tmp/*.url
 sudo rm /tmp/TorBulkExitList
 sudo rm /tmp/ip.txt
+sudo rm /tmp/bruteforcers.txt
 cd ~
 
 # replace DROP to Alert when NSM_MODE="ids" else reset
