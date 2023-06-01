@@ -2147,6 +2147,7 @@ Restart=on-failure
 
 [Service]
 Type=forking
+Environment="LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4"
 PIDFile=/var/run/suricata.pid
 ExecStartPre=/usr/bin/mkdir -p /var/run/suricata
 ExecStartPre=/etc/croissants/conf.d/setfirewall
